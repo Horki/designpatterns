@@ -5,13 +5,7 @@ import Structural.Decorator.Decorators.MochaCondiment;
 import Structural.Decorator.Decorators.SoyCondiment;
 import Structural.Decorator.Decorators.SteamedMilkCondiment;
 import Structural.Decorator.Decorators.WhipCondiment;
-import Structural.Decorator.IODecorators.LowerCaseInputStream;
-import Structural.Decorator.IODecorators.UpperCaseInputStream;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +60,7 @@ public class DecoratorMain {
         System.out.printf("%s costs %.02f$\n", b.getDescription(), b.cost());
     }
 
-    private static void runCoffeeDecorators() {
+    public static void main(String[] args) {
         List<Beverage> array = new ArrayList<>();
         array.add(new HouseBlend());
         array.add(new DarkRoast());
@@ -78,36 +72,6 @@ public class DecoratorMain {
         array.add(new SoyCondiment(new SteamedMilkCondiment(new WhipCondiment(new MochaCondiment(new Espresso())))));
         for (Beverage item : array) {
             name(item);
-        }
-    }
-
-    private static void io(InputStream in) throws IOException {
-        int c;
-        while ((c = in.read()) >= 0) {
-            System.out.print((char) c);
-        }
-    }
-
-    private static void runIoDecorators() throws IOException {
-        try {
-            String path = "src/Structural/Decorator/data/test.txt";
-            io(new BufferedInputStream(new FileInputStream(path)));
-            io(new LowerCaseInputStream(new BufferedInputStream(new FileInputStream(path))));
-            io(new UpperCaseInputStream(new BufferedInputStream(new FileInputStream(path))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // use data/test.txt
-    public static void main(String[] args) {
-        System.out.println("===========================");
-        runCoffeeDecorators();
-        System.out.println("===========================");
-        try {
-            runIoDecorators();
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
         }
     }
 }
