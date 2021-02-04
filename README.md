@@ -15,6 +15,7 @@ Head First: Design Patterns
 | :------------- | :----------: | -----------: | -----------: |
 | [Abstract factory](https://en.wikipedia.org/wiki/Abstract_factory_pattern) | *The Abstract Factory Pattern* provides an interface for creating families of related or dependent class without specifying their concrete classes. | 4 | [Factory/Product Pizza](https://github.com/Horki/designpatterns/blob/main/src/Creational/AbstractFactory/AbstractFactoryMain.java) |
 | [Factory method](https://en.wikipedia.org/wiki/Factory_method_pattern) | *The Factory Method Pattern* defines an interface for creating an object, but lets subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses. | 4 | [Creator/Product Pizza](https://github.com/Horki/designpatterns/blob/main/src/Creational/FactoryMethod/FactoryMethodMain.java) |
+| [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) | *The Singleton Pattern* ensures a class has only one instance, and provides global point of access to it. | 5 | [Simple Singleton](https://github.com/Horki/designpatterns/blob/main/src/Creational/Singleton/SingletonMain.java), [Multi-threaded Singleton](https://github.com/Horki/designpatterns/blob/main/src/Creational/Singleton/Threads/SingletonThreadsFailMain.java) |
 
 
 ## [Structural patterns](https://en.wikipedia.org/wiki/Structural_pattern)
