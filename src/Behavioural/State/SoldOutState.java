@@ -1,7 +1,7 @@
 package Behavioural.State;
 
 public class SoldOutState implements State {
-    private GumballMachine gumballMachine;
+    private final GumballMachine gumballMachine;
 
     public SoldOutState(GumballMachine g) {
         gumballMachine = g;

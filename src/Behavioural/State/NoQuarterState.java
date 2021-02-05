@@ -1,7 +1,7 @@
 package Behavioural.State;
 
 public class NoQuarterState implements State {
-    private GumballMachine gumballMachine;
+    private final GumballMachine gumballMachine;
 
     public NoQuarterState(GumballMachine g) {
         gumballMachine = g;
