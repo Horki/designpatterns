@@ -1,7 +1,7 @@
 package Behavioural.Command;
 
 public class Invoker {
-    private Command command;
+    private final Command command;
 
     public Invoker(Command c) {
         command = c;

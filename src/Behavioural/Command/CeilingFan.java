@@ -1,7 +1,7 @@
 package Behavioural.Command;
 
 public class CeilingFan {
-    private String location;
+    private final String location;
     private int speed;
     public static final int HIGH = 3;
     public static final int MEDIUM = 2;

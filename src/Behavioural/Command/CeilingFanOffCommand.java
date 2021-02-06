@@ -1,7 +1,7 @@
 package Behavioural.Command;
 
 public class CeilingFanOffCommand implements Command {
-    private CeilingFan ceilingFan;
+    private final CeilingFan ceilingFan;
 
     public CeilingFanOffCommand(CeilingFan c) {
         ceilingFan = c;

@@ -1,7 +1,7 @@
 package Behavioural.Command;
 
 public class GarageDoorDownCommand implements Command {
-    private GarageDoor garageDoor;
+    private final GarageDoor garageDoor;
 
     public GarageDoorDownCommand(GarageDoor g) {
         garageDoor = g;

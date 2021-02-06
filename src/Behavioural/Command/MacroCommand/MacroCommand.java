@@ -3,7 +3,7 @@ package Behavioural.Command.MacroCommand;
 import Behavioural.Command.Command;
 
 public class MacroCommand implements Command {
-    private Command[] commands;
+    private final Command[] commands;
 
     public MacroCommand(Command[] c) {
         commands = c;

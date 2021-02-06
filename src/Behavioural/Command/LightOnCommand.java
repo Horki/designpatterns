@@ -1,7 +1,7 @@
 package Behavioural.Command;
 
 public class LightOnCommand implements Command {
-    private Light light;
+    private final Light light;
 
     public LightOnCommand(Light l) {
         light = l;

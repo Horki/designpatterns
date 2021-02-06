@@ -1,7 +1,7 @@
 package Behavioural.Command;
 
 public class Stereo {
-    private String location;
+    private final String location;
 
     public Stereo(String l) {
         location = l;

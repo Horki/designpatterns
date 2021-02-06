@@ -3,7 +3,7 @@ package Behavioural.Command.Simple.Commands;
 import Behavioural.Command.Simple.Buttons.Light;
 
 public class LightOnCommand implements Command {
-    private Light light;
+    private final Light light;
 
     public LightOnCommand(Light l) {
         light = l;

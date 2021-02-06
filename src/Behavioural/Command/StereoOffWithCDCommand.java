@@ -1,7 +1,7 @@
 package Behavioural.Command;
 
 public class StereoOffWithCDCommand implements Command {
-    private Stereo stereo;
+    private final Stereo stereo;
 
     public StereoOffWithCDCommand(Stereo s) {
         stereo = s;

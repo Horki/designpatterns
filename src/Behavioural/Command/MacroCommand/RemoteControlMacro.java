@@ -4,8 +4,8 @@ import Behavioural.Command.Command;
 import Behavioural.Command.NoCommand;
 
 public class RemoteControlMacro {
-    private MacroCommand[] macroOnCommands;
-    private MacroCommand[] macroOffCommands;
+    private final MacroCommand[] macroOnCommands;
+    private final MacroCommand[] macroOffCommands;
     private MacroCommand undoCommand;
     private final int no;
 
