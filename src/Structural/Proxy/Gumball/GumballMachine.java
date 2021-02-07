@@ -1,6 +1,6 @@
-package Structural.Proxy;
+package Structural.Proxy.Gumball;
 
-import Structural.Proxy.States.*;
+import Structural.Proxy.Gumball.States.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

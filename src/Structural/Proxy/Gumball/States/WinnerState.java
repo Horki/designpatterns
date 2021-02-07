@@ -1,7 +1,7 @@
-package Structural.Proxy.States;
+package Structural.Proxy.Gumball.States;
 
-import Structural.Proxy.GumballMachine;
-import Structural.Proxy.State;
+import Structural.Proxy.Gumball.GumballMachine;
+import Structural.Proxy.Gumball.State;
 
 public class WinnerState implements State {
     private final transient GumballMachine gumballMachine;

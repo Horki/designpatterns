@@ -1,8 +1,8 @@
-package Structural.Proxy;
+package Structural.Proxy.Gumball;
 
 import java.rmi.Naming;
 
-public class ProxyMain {
+public class GumballProxyMain {
     public static void main(String[] args) {
         String[] location = {
                 "rmi://santafe.mightygumball.com/gumballmachine",
