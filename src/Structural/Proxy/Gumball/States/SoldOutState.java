@@ -1,12 +1,12 @@
 package Structural.Proxy.Gumball.States;
 
-import Structural.Proxy.Gumball.GumballMachine;
+import Structural.Proxy.Gumball.GumballMachineServer;
 import Structural.Proxy.Gumball.State;
 
 public class SoldOutState implements State {
-    private final transient GumballMachine gumballMachine;
+    private final transient GumballMachineServer gumballMachine;
 
-    public SoldOutState(GumballMachine g) {
+    public SoldOutState(GumballMachineServer g) {
         gumballMachine = g;
     }
 

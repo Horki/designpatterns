@@ -1,15 +1,15 @@
 package Structural.Proxy.Gumball.States;
 
-import Structural.Proxy.Gumball.GumballMachine;
+import Structural.Proxy.Gumball.GumballMachineServer;
 import Structural.Proxy.Gumball.State;
 
 import java.util.Random;
 
 public class HasQuarterState implements State {
-    private final transient GumballMachine gumballMachine;
+    private final transient GumballMachineServer gumballMachine;
     private final Random randomWinner;
 
-    public HasQuarterState(GumballMachine g) {
+    public HasQuarterState(GumballMachineServer g) {
         gumballMachine = g;
         randomWinner = new Random(System.currentTimeMillis());
     }

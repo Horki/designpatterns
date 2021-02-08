@@ -5,7 +5,7 @@ import Structural.Proxy.Gumball.States.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class GumballMachine extends UnicastRemoteObject implements GumballMachineRemote {
+public class GumballMachineServer extends UnicastRemoteObject implements GumballMachineRemote {
     private final String location;
     private int count;
     private State state;
@@ -15,7 +15,7 @@ public class GumballMachine extends UnicastRemoteObject implements GumballMachin
     private final State soldState;
     private final State winnerState;
 
-    public GumballMachine(String l, int c) throws RemoteException {
+    public GumballMachineServer(String l, int c) throws RemoteException {
         location = l;
         count = c;
         soldOutState = new SoldOutState(this);

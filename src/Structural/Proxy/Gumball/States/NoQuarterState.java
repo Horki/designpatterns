@@ -1,12 +1,12 @@
 package Structural.Proxy.Gumball.States;
 
-import Structural.Proxy.Gumball.GumballMachine;
+import Structural.Proxy.Gumball.GumballMachineServer;
 import Structural.Proxy.Gumball.State;
 
 public class NoQuarterState implements State {
-    private final transient GumballMachine gumballMachine;
+    private final transient GumballMachineServer gumballMachine;
 
-    public NoQuarterState(GumballMachine g) {
+    public NoQuarterState(GumballMachineServer g) {
         gumballMachine = g;
     }
 
