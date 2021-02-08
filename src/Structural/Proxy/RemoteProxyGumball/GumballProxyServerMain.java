@@ -1,4 +1,4 @@
-package Structural.Proxy.Gumball;
+package Structural.Proxy.RemoteProxyGumball;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;

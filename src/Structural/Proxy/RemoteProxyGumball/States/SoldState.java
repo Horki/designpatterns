@@ -1,7 +1,7 @@
-package Structural.Proxy.Gumball.States;
+package Structural.Proxy.RemoteProxyGumball.States;
 
-import Structural.Proxy.Gumball.GumballMachineServer;
-import Structural.Proxy.Gumball.State;
+import Structural.Proxy.RemoteProxyGumball.GumballMachineServer;
+import Structural.Proxy.RemoteProxyGumball.State;
 
 public class SoldState implements State {
     private final transient GumballMachineServer gumballMachine;

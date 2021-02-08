@@ -1,4 +1,4 @@
-package Structural.Proxy.Gumball;
+package Structural.Proxy.RemoteProxyGumball;
 
 import java.io.Serializable;
 
