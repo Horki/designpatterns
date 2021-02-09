@@ -1,2 +1,6 @@
+# Java
 out/*
 *.iml
+
+# CPP
+cpp/build
