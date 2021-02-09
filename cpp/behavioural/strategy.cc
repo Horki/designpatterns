@@ -1,19 +1,18 @@
 #include <iostream>
-#include <string>
 #include <memory>
 
 namespace Behavioural {
 namespace Interface {
 class Fly {
  public:
-  virtual void fly() const = 0;
+  virtual void fly() const noexcept = 0;
 
   virtual ~Fly() = default;
 };
 
 class Quack {
  public:
-  virtual void quack() const = 0;
+  virtual void quack() const noexcept = 0;
 
   virtual ~Quack() = default;
 };
@@ -22,22 +21,36 @@ class Quack {
 namespace Implementation {
 class FlyHigh : public virtual Interface::Fly {
  public:
-  void fly() const override {
-    std::cout << "fly high\n";
+  void fly() const noexcept override {
+    std::cout << "Flying High\n";
   }
 };
 
-class QuackHigh : public virtual Interface::Quack {
- public:
-  void quack() const override {
-    std::cout << "quack high\n";
+class FlyLow : public virtual Interface::Fly {
+public:
+  void fly() const noexcept override {
+    std::cout << "Flying Low\n";
   }
 };
 
-class QuackLow : public virtual Interface::Quack {
+class FlyRocket : public virtual Interface::Fly {
  public:
-  void quack() const override {
-    std::cout << "quack low\n";
+  void fly() const noexcept override {
+    std::cout << "Fly with Rocket\n";
+  }
+};
+
+class QuackLoud : public virtual Interface::Quack {
+ public:
+  void quack() const noexcept override {
+    std::cout << "Quack Loud\n";
+  }
+};
+
+class QuackMute : public virtual Interface::Quack {
+ public:
+  void quack() const noexcept override {
+    std::cout << "Quack Mute\n";
   }
 };
 }
@@ -50,67 +63,73 @@ class Duck {
  public:
   virtual ~Duck() = default;
 
-  void doFly() const {
+  void performFly() const noexcept {
     runFly->fly();
   }
 
-  void setFly(std::unique_ptr<Interface::Fly> f) {
+  void setFly(std::unique_ptr<Interface::Fly> f) noexcept {
+//    std::swap(runFly, f);
     runFly = std::move(f);
   }
 
-  void setQuack(std::unique_ptr<Interface::Quack> q) {
+  void setQuack(std::unique_ptr<Interface::Quack> q) noexcept {
+//    std::swap(runQuack, q);
     runQuack = std::move(q);
   }
 
-  void doQuack() const {
+  void performQuack() const noexcept {
     runQuack->quack();
   }
 
-  virtual void run() const = 0;
+  virtual void display() const noexcept = 0;
 
-  static void swim() {
-    std::cout << " all ducks swim\n";
+  void swim() const noexcept {
+    std::cout << "all ducks swim\n";
   }
 };
 }
 
-class MallordDuck : public Abstract::Duck {
+class MallardDuck : public Abstract::Duck {
  public:
-  MallordDuck() {
+  MallardDuck() {
     runFly = std::make_unique<Implementation::FlyHigh>();
-    runQuack = std::make_unique<Implementation::QuackHigh>();
+    runQuack = std::make_unique<Implementation::QuackMute>();
   }
 
-  void run() const override {
-    std::cout << "mallord runs\n";
+  void display() const noexcept override {
+    std::cout << "mallard runs\n";
   }
 };
 
 class RedDuck : public Abstract::Duck {
  public:
   RedDuck() {
-    runFly = std::make_unique<Implementation::FlyHigh>();
-    runQuack = std::make_unique<Implementation::QuackHigh>();
+    runFly = std::make_unique<Implementation::FlyLow>();
+    runQuack = std::make_unique<Implementation::QuackLoud>();
   }
 
-  void run() const override {
+  void display() const noexcept override {
     std::cout << "red runs\n";
   }
 };
 }
 
 void run(const Behavioural::Abstract::Duck &d) {
-  d.run();
-  d.doFly();
+  std::cout << "=================\n";
+  d.display();
+  d.performFly();
+  d.performQuack();
   d.swim();
-  d.doQuack();
+  std::cout << "=================\n";
 }
 
 int main() {
-  Behavioural::MallordDuck d;
-  Behavioural::RedDuck r;
-  run(d);
-  run(r);
-  r.setQuack(std::make_unique<Behavioural::Implementation::QuackLow>());
-  run(r);
+  using namespace Behavioural;
+  MallardDuck mallard;
+  RedDuck redhead;
+  run(mallard);
+  run(redhead);
+  mallard.setFly(std::make_unique<Behavioural::Implementation::FlyRocket>());
+  mallard.setQuack(std::make_unique<Behavioural::Implementation::QuackLoud>());
+  run(mallard);
 }
