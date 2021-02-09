@@ -43,14 +43,14 @@ public class ProtectionProxyMain {
         System.out.println("Rating is " + nonOwnerProxy.getHotOrNotRating());
     }
 
-    private PersonBean getOwnerProxy(PersonBean person) {
+    private static PersonBean getOwnerProxy(PersonBean person) {
         return (PersonBean) Proxy.newProxyInstance(
                 person.getClass().getClassLoader(),
                 person.getClass().getInterfaces(),
                 new OwnerInvocationHandler(person));
     }
 
-    private PersonBean getNonOwnerProxy(PersonBean person) {
+    private static PersonBean getNonOwnerProxy(PersonBean person) {
         return (PersonBean) Proxy.newProxyInstance(
                 person.getClass().getClassLoader(),
                 person.getClass().getInterfaces(),
