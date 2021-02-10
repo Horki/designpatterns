@@ -9,4 +9,5 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 add_executable(strategy behavioural/strategy.cc)
+add_executable(observer behavioural/observer.cc)
 
