@@ -10,4 +10,4 @@ add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 add_executable(strategy behavioural/strategy.cc)
 add_executable(observer behavioural/observer.cc)
-
+add_executable(decorator structural/decorator.cc)
