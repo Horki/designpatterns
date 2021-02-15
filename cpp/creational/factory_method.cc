@@ -22,7 +22,9 @@ class Pizza {
     std::copy(toppings.cbegin(), toppings.cend(), iter(std::cout, ", "));
     std::cout << std::endl;
   }
-  std::string_view get_name() const noexcept { return name; }
+  [[nodiscard("PIZZA::GET_NAME")]] std::string_view get_name() const noexcept {
+    return name;
+  }
   virtual void bake() const noexcept {
     std::cout << "Bake for 25 minutes at 350\n";
   }
@@ -75,14 +77,18 @@ class ChicagoStyleCheesePizza : public Pizza {
 };
 }  // namespace Product
 namespace Creator {
+enum class PizzaType : char {
+  CHEESE,
+  OTHER,
+};
 class PizzaStore {
  protected:
   virtual std::unique_ptr<Product::Pizza> create_pizza(
-      std::string_view s) noexcept = 0;
+      const PizzaType) noexcept = 0;
 
  public:
-  std::unique_ptr<Product::Pizza> order_pizza(std::string_view t) {
-    auto pizza = create_pizza(t);
+  std::unique_ptr<Product::Pizza> order_pizza(const PizzaType p) noexcept {
+    auto pizza = create_pizza(p);
     pizza->prepare();
     pizza->bake();
     pizza->cut();
@@ -94,21 +100,25 @@ class PizzaStore {
 class ChicagoStylePizzaStore : public PizzaStore {
  protected:
   std::unique_ptr<Product::Pizza> create_pizza(
-      std::string_view v) noexcept override {
-    if (v == "cheese") {
-      return std::make_unique<Product::ChicagoStyleCheesePizza>();
+      const PizzaType p) noexcept override {
+    switch (p) {
+      case PizzaType::CHEESE:
+        return std::make_unique<Product::ChicagoStyleCheesePizza>();
+      case PizzaType::OTHER:
+        return std::make_unique<Product::ChicagoStylePizza>();
     }
-    return std::make_unique<Product::ChicagoStylePizza>();
   }
 };
 class NYStylePizzaStore : public PizzaStore {
  protected:
   std::unique_ptr<Product::Pizza> create_pizza(
-      std::string_view v) noexcept override {
-    if (v == "cheese") {
-      return std::make_unique<Product::NYStyleCheesePizza>();
+      const PizzaType p) noexcept override {
+    switch (p) {
+      case PizzaType::CHEESE:
+        return std::make_unique<Product::NYStyleCheesePizza>();
+      case PizzaType::OTHER:
+        return std::make_unique<Product::NYStylePizza>();
     }
-    return std::make_unique<Product::NYStylePizza>();
   }
 };
 }  // namespace Creator
@@ -116,10 +126,10 @@ class NYStylePizzaStore : public PizzaStore {
 
 int main() {
   using namespace Creational;
-  auto nyStore = Creator::NYStylePizzaStore{};
-  auto chicagoStore = Creator::ChicagoStylePizzaStore{};
-  auto cheese = nyStore.order_pizza("Cheese");
-  std::cout << "Ethan ordered a " << cheese->get_name();
-  auto cheeseChicago = chicagoStore.order_pizza("nope");
-  std::cout << "Joel ordered a " << cheeseChicago->get_name() << std::endl;
+  auto ny_store = Creator::NYStylePizzaStore{};
+  auto chicago_store = Creator::ChicagoStylePizzaStore{};
+  auto cheese_ny = ny_store.order_pizza(Creator::PizzaType::CHEESE);
+  std::cout << "Ethan ordered a " << cheese_ny->get_name();
+  auto regular_chicago = chicago_store.order_pizza(Creator::PizzaType::OTHER);
+  std::cout << "Joel ordered a " << regular_chicago->get_name() << std::endl;
 }
