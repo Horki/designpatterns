@@ -16,5 +16,6 @@ add_executable(decorator structural/decorator.cc)
 add_executable(factory_method creational/factory_method.cc)
 add_executable(abstract_factory creational/abstract_factory.cc)
 add_executable(singleton creational/singleton.cc)
+add_executable(command behavioural/command.cc)
 
 target_link_libraries(singleton Threads::Threads)
