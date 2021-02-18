@@ -24,7 +24,7 @@ class PizzaIngredientFactory {
   virtual std::unique_ptr<Cheese> create_cheese() noexcept = 0;
   virtual std::unique_ptr<Pepperoni> create_pepperoni() noexcept = 0;
   virtual std::unique_ptr<Clams> create_clams() noexcept = 0;
-  virtual std::vector<std::unique_ptr<Ingredients::Veggies>>
+  virtual std::vector<std::unique_ptr<Veggies>>
   create_veggies() noexcept = 0;
   virtual ~PizzaIngredientFactory() = default;
 };
