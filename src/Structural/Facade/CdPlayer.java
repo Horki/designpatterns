@@ -3,12 +3,10 @@ package Structural.Facade;
 public class CdPlayer {
     private String description;
     private int currentTrack;
-    private Amplifier amplifier;
     private String title;
 
-    public CdPlayer(String d, Amplifier a) {
+    public CdPlayer(String d) {
         description = d;
-        amplifier = a;
         currentTrack = 1;
     }
 

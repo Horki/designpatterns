@@ -2,8 +2,6 @@ package Structural.Facade;
 
 public class Amplifier {
     private String description;
-    private Tuner tuner;
-    private DvdPlayer player;
     private int volume;
 
     public Amplifier(String d) {
@@ -32,13 +30,11 @@ public class Amplifier {
         System.out.println(description + " setting volume to " + volume);
     }
 
-    public void setTuner(Tuner t) {
-        tuner = t;
+    public void setTuner(Tuner tuner) {
         System.out.println(description + " setting tuner to " + tuner);
     }
 
-    public void setDvd(DvdPlayer p) {
-        player = p;
+    public void setDvd(DvdPlayer player) {
         System.out.println(description + " setting Streaming player to " + player);
     }
 

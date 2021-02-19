@@ -2,11 +2,9 @@ package Structural.Facade;
 
 public class DvdPlayer {
     private String description;
-    private Amplifier amplifier;
 
-    public DvdPlayer(String d, Amplifier a) {
+    public DvdPlayer(String d) {
         description = d;
-        amplifier = a;
     }
 
     public void on() {

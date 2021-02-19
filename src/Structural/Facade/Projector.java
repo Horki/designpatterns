@@ -2,11 +2,9 @@ package Structural.Facade;
 
 public class Projector {
     private String description;
-    private DvdPlayer player;
 
-    public Projector(String d, DvdPlayer p) {
+    public Projector(String d) {
         description = d;
-        player = p;
     }
 
     public void on() {

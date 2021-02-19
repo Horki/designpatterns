@@ -2,12 +2,11 @@ package Structural.Facade;
 
 public class Tuner {
     String description;
-    Amplifier amplifier;
     double frequency;
 
-    public Tuner(String d, Amplifier a) {
+    public Tuner(String d) {
         description = d;
-        amplifier = a;
+        frequency = 0f;
     }
 
     public void on() {
