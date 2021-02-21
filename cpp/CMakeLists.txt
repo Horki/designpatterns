@@ -18,5 +18,6 @@ add_executable(abstract_factory creational/abstract_factory.cc)
 add_executable(singleton creational/singleton.cc)
 add_executable(command behavioural/command.cc)
 add_executable(adapter structural/adapter.cc)
+add_executable(facade structural/facade.cc)
 
 target_link_libraries(singleton Threads::Threads)
