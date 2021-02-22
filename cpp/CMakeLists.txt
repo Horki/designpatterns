@@ -19,5 +19,6 @@ add_executable(singleton creational/singleton.cc)
 add_executable(command behavioural/command.cc)
 add_executable(adapter structural/adapter.cc)
 add_executable(facade structural/facade.cc)
+add_executable(template_method behavioural/template_method.cc)
 
 target_link_libraries(singleton Threads::Threads)
