@@ -21,5 +21,6 @@ add_executable(adapter structural/adapter.cc)
 add_executable(facade structural/facade.cc)
 add_executable(template_method behavioural/template_method.cc)
 add_executable(composite structural/composite.cc)
+add_executable(iterator behavioural/iterator.cc)
 
 target_link_libraries(singleton Threads::Threads)
