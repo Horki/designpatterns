@@ -9,6 +9,7 @@
 
 namespace Behavioural {
 namespace Interfaces {
+// TODO: Create better Iterator interface!
 template <typename T>
 class Iter {
  public:
@@ -161,10 +162,6 @@ class DinerAggregateMenu : public virtual Interfaces::Aggregate<MenuItem> {
   [[nodiscard]] std::unique_ptr<Interfaces::Iter<MenuItem>> create_iterator()
       const override {
     return std::make_unique<DinerMenuIterator>(menu_items);
-  }
-  auto begin() {
-    auto r = menu_items.cbegin();
-    return r;
   }
 };
 class PancakeHouseAggregateMenu
