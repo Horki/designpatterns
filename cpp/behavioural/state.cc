@@ -1,7 +1,6 @@
-#include <chrono>
-#include <cstdlib>
 #include <iostream>
 #include <memory>
+#include <random>
 #include <string_view>
 
 namespace Behavioural {
@@ -44,7 +43,7 @@ class GumballMachine {
       --count;
     }
   }
-  std::size_t get_count() const noexcept { return count; }
+  [[nodiscard]] std::size_t get_count() const noexcept { return count; }
   void refill(const std::size_t c) {
     count += c;
     std::cout << "The gumball machine was just refilled; its new count is: "
@@ -66,6 +65,13 @@ class GumballMachine {
 
 class HasQuarterState : public virtual State {
   GumballMachine* gumball_machine;
+  // 0..=9
+  static std::size_t gen() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<std::size_t> dist(0, 9);
+    return dist(gen);
+  }
 
  public:
   explicit HasQuarterState(GumballMachine* g) : gumball_machine{g} {}
@@ -75,9 +81,8 @@ class HasQuarterState : public virtual State {
     gumball_machine->set_state(States::NO_QUARTER);
   }
   void turn_crank() override {
-    std::cout << "You turned...\n";
-    std::srand(std::time(0));
-    std::size_t winner = static_cast<std::size_t>(std::rand()) % 10;
+    std::size_t winner = gen();
+    std::cout << "You turned : " << winner << ", ...\n";
     if ((winner == 0) && (gumball_machine->get_count() > 1)) {
       gumball_machine->set_state(States::WINNER);
     } else {
@@ -111,11 +116,9 @@ class NoQuarterState : public virtual State {
 
 class SoldState : public virtual State {
   GumballMachine* gumball_machine;
-  std::string_view n;
 
  public:
-  explicit SoldState(GumballMachine* g)
-      : gumball_machine{g}, n{"Dispensing a Gumball"} {}
+  explicit SoldState(GumballMachine* g) : gumball_machine{g} {}
   void insert() override {
     std::cout << "Please wait, we're already giving you a gumball\n";
   }
@@ -135,7 +138,7 @@ class SoldState : public virtual State {
     }
   }
   void refill() override {}
-  void print() const noexcept override { std::cout << "Waiting for a Quarter"; }
+  void print() const noexcept override { std::cout << "Dispensing a Gumball"; }
 };
 
 class SoldOutState : public virtual State {
@@ -220,10 +223,11 @@ void GumballMachine::set_state(const States s) {
 
 int main() {
   using namespace Behavioural;
-  GumballMachine gumball_machine = GumballMachine{5};
+  constexpr std::size_t cnt{5};
+  GumballMachine gumball_machine = GumballMachine{cnt};
   std::cout << gumball_machine << std::endl;
 
-  for (std::size_t i{0}; i < 5; ++i) {
+  for (std::size_t i{0}; i < cnt; ++i) {
     gumball_machine.insert();
     gumball_machine.turn_crank();
     gumball_machine.insert();
