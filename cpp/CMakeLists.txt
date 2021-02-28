@@ -23,5 +23,6 @@ add_executable(template_method behavioural/template_method.cc)
 add_executable(composite structural/composite.cc)
 add_executable(iterator behavioural/iterator.cc)
 add_executable(state behavioural/state.cc)
+add_executable(proxy structural/proxy.cc)
 
 target_link_libraries(singleton Threads::Threads)
